@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "App.h"
 #include "Wnd.h"
+#include "FPSManager.h"
+#include "SceneManager.h"
+#include "D2D1Core.h"
+
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
@@ -20,10 +24,10 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 			DispatchMessage(&msg);
 		}
 
-		if (g_fpsManger.Cal() && SceenManager::GetInstance())
+		if (FPSManager::GetInstnace()->Ok())
 		{
-			SceenManager::GetInstance()->Update(m_wnd);
-			SceenManager::GetInstance()->Render(m_wnd);
+			SceneManager::GetInstance()->Update(_wnd);
+			SceneManager::GetInstance()->Render(_wnd);
 		}
 		Sleep(1);
 	}

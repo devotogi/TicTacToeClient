@@ -12,11 +12,17 @@
     <ClCompile Include="Wnd.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="D2D1Core.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="FPSManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Wnd.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="D2D1Core.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="FPSManager.h" />
   </ItemGroup>
 </Project>

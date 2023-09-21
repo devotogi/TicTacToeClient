@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Wnd.h"
+#include "D2D1Core.h"
 
 Wnd::Wnd(HINSTANCE hInstance, int posX, int posY, int width, int height, const WCHAR* title, const WCHAR* className, WNDPROC proc) : _posX(posX), _posY(posY), _width(width), _height(height)
 {
@@ -44,6 +45,9 @@ Wnd::Wnd(HINSTANCE hInstance, int posX, int posY, int width, int height, const W
 			L"Windows Desktop Guided Tour",
 			NULL);
 	}
+
+	D2D1Core::GetInstance()->CreateRenderTarget(_hWnd, &_rt);
+	D2D1Core::GetInstance()->CreateRenderTarget(_rt, &_brt);
 
 	ShowWindow(_hWnd, 10); // 생성된 윈도우 화면 출력
 	UpdateWindow(_hWnd);  // 윈도우 운영체제에 WM_PAINT 메세지 전송(이벤트 전송)

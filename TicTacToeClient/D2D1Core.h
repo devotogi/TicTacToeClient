@@ -7,7 +7,7 @@ private:
 	ID2D1RenderTarget* _D2D1Rt = nullptr;
 
 public:
-	D2D1Core* GetInstance() 
+	static D2D1Core* GetInstance() 
 	{
 		if (_instance == nullptr)
 		{

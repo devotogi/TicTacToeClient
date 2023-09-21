@@ -6,6 +6,8 @@ private:
 	int _posY;
 	int _width;
 	int _height;
+	ID2D1HwndRenderTarget* _rt;
+	ID2D1BitmapRenderTarget* _brt;
 	HWND _hWnd;
 
 public:
