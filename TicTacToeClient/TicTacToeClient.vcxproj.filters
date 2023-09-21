@@ -11,10 +11,12 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Wnd.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="D2D1Core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Wnd.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="D2D1Core.h" />
   </ItemGroup>
 </Project>

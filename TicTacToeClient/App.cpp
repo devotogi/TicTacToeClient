@@ -9,10 +9,23 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
     _wnd = new Wnd(hInstance,0,0,700,700, szTitle, szWindowClass, WndProc);
 
 	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0)) 
+	while (true)
 	{
-		TranslateMessage(&msg); 
-		DispatchMessage(&msg); 
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+				break;
+
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		if (g_fpsManger.Cal() && SceenManager::GetInstance())
+		{
+			SceenManager::GetInstance()->Update(m_wnd);
+			SceenManager::GetInstance()->Render(m_wnd);
+		}
+		Sleep(1);
 	}
 }
 
