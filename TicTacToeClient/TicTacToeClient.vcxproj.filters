@@ -18,6 +18,9 @@
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SingleGameScene.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -31,5 +34,8 @@
     <ClInclude Include="Types.h" />
     <ClInclude Include="Bitmap.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SingleGameScene.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
 </Project>

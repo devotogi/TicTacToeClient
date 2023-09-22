@@ -29,14 +29,14 @@ void SceneManager::Render(Wnd* wnd)
 {
 	ID2D1Bitmap* bitmap;
 	wnd->GetBRT()->BeginDraw();
-	wnd->GetBRT()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-
-	wnd->DebugRender();
+	wnd->GetBRT()->Clear(D2D1::ColorF(D2D1::ColorF::White));
 
 	Scene* nowScene = GetScene();
 
 	if (nowScene)
 		nowScene->Render(wnd);
+
+	wnd->DebugRender();
 
 	wnd->GetBRT()->EndDraw();
 	wnd->GetBRT()->GetBitmap(&bitmap);

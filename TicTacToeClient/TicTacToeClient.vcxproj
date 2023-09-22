@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Bitmap.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="D2D1Core.cpp" />
     <ClCompile Include="FPSManager.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -149,12 +150,15 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SingleGameScene.cpp" />
     <ClCompile Include="TicTacToeClient.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Wnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Bitmap.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="D2D1Core.h" />
     <ClInclude Include="FPSManager.h" />
     <ClInclude Include="MenuScene.h" />
@@ -162,7 +166,9 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SingleGameScene.h" />
     <ClInclude Include="Types.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Wnd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

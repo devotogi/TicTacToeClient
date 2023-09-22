@@ -1,12 +1,14 @@
 #pragma once
 class Wnd;
 class MenuScene;
+class SingleGameScene;
 
 class App
 {
 private:
 	Wnd* _wnd = nullptr;
 	MenuScene* _menuScene = nullptr;
+	SingleGameScene* _singleGameScene = nullptr;
 
 public:
 	App(HINSTANCE hInstance, int posX, int posY, int width, int height);

@@ -5,16 +5,21 @@
 #include "SceneManager.h"
 #include "D2D1Core.h"
 #include "MenuScene.h"
+#include "SingleGameScene.h"
 
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
 App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 {
-    _wnd = new Wnd(hInstance,0,0,900,540, szTitle, szWindowClass, WndProc, this);
+    _wnd = new Wnd(hInstance,0,0,976,579, szTitle, szWindowClass, WndProc, this);
 	
 	_menuScene = new MenuScene(_wnd);
+	_singleGameScene = new SingleGameScene(_wnd);
+
+
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Menu), reinterpret_cast<Scene*>(_menuScene));
+	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::SingelGame), reinterpret_cast<Scene*>(_singleGameScene));
 
 	MSG msg;
 	while (true)
