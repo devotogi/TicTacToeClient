@@ -1,14 +1,15 @@
 #pragma once
 #include "Scene.h"
+class Bitmap;
 class Wnd;
 
 class MenuScene : public Scene
 {
 private:
-
+	Bitmap* _menuBitmap = nullptr;
 
 public:
-	MenuScene();
+	MenuScene(Wnd* wnd);
 	~MenuScene();
 
 	virtual void	Init(Wnd* _wnd) override;

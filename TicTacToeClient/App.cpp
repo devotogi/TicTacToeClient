@@ -11,9 +11,9 @@ static WCHAR szTitle[] = L"TicTacToeClient";
 
 App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 {
-    _wnd = new Wnd(hInstance,0,0,700,700, szTitle, szWindowClass, WndProc, this);
-	_menuScene = new MenuScene();
-
+    _wnd = new Wnd(hInstance,0,0,900,540, szTitle, szWindowClass, WndProc, this);
+	
+	_menuScene = new MenuScene(_wnd);
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Menu), reinterpret_cast<Scene*>(_menuScene));
 
 	MSG msg;

@@ -26,6 +26,7 @@ public:
 public:
 	ID2D1BitmapRenderTarget* GetBRT() { return _brt; }
 	ID2D1HwndRenderTarget* GetRT() { return _rt; }
+	ID2D1HwndRenderTarget** GetPRT() { return &_rt; }
 	ID2D1SolidColorBrush* GetBlackColor() { return _black; }
 	ID2D1SolidColorBrush* GetRedColor() { return _red; }
 	IDWriteTextFormat* GetTextFormat() { return _textFormat; }

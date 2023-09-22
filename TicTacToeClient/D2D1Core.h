@@ -1,4 +1,6 @@
 #pragma once
+class Bitmap;
+
 class D2D1Core
 {
 private:
@@ -6,6 +8,10 @@ private:
 	ID2D1Factory* _D2D1Factory = nullptr;
 	ID2D1RenderTarget* _D2D1Rt = nullptr;
 	IDWriteFactory* _D2D1WriteFactory = nullptr;
+	IWICImagingFactory* _WICFactory = nullptr;
+
+private:
+	BYTE* ConvertFrameToBitmap(IWICBitmapFrameDecode* frame);
 
 public:
 	static D2D1Core* GetInstance() 
@@ -23,5 +29,6 @@ public:
 	void CreateRenderTarget(ID2D1HwndRenderTarget* rt, ID2D1BitmapRenderTarget** crt);
 	void CreateTextFormat(IDWriteTextFormat** textFormat, const WCHAR* fontName, const FLOAT fontSize);
 	void CreateBrush(D2D1::ColorF color, ID2D1BitmapRenderTarget* rt, ID2D1SolidColorBrush** brush);
+	Bitmap* LoadBitmapByFilename(ID2D1HwndRenderTarget** rt, const WCHAR* fileName);
 };
 
