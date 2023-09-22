@@ -27,8 +27,32 @@ void SceneManager::Update(Wnd* wnd)
 
 void SceneManager::Render(Wnd* wnd)
 {
+	ID2D1Bitmap* bitmap;
+	wnd->GetBRT()->BeginDraw();
+	wnd->GetBRT()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+
+	wnd->DebugRender();
+
 	Scene* nowScene = GetScene();
 
 	if (nowScene)
 		nowScene->Render(wnd);
+
+	wnd->GetBRT()->EndDraw();
+	wnd->GetBRT()->GetBitmap(&bitmap);
+
+	wnd->GetRT()->BeginDraw();
+
+	RECT rect;
+	GetClientRect(wnd->GetHWND(), &rect);
+	D2D1_RECT_F rtDest = { rect.left, rect.top, rect.right, rect.bottom };
+	if (bitmap)
+		wnd->GetRT()->DrawBitmap(bitmap, rtDest, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR);
+
+	wnd->GetRT()->EndDraw();
+}
+
+void SceneManager::Add(int sceneType, Scene* scene)
+{
+	_scenes.insert({ sceneType , scene });
 }

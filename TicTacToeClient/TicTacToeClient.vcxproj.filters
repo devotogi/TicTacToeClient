@@ -15,6 +15,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="FPSManager.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -24,5 +25,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="FPSManager.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
 </Project>

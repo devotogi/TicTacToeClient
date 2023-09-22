@@ -1,15 +1,20 @@
 #pragma once
 class Wnd;
+class MenuScene;
 
 class App
 {
 private:
-	Wnd* _wnd;
-	
+	Wnd* _wnd = nullptr;
+	MenuScene* _menuScene = nullptr;
+
 public:
 	App(HINSTANCE hInstance, int posX, int posY, int width, int height);
 	~App();
 
+	void MouseMoveEvent(int x, int y);
+
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	LRESULT	Dispatch(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

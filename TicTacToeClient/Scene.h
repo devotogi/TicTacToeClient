@@ -3,13 +3,14 @@ class Wnd;
 
 class Scene
 {
-private:
+protected:
+
+public:
 	Scene() {};
 	virtual ~Scene() { };
 
-public:
-	virtual void	Init(Wnd* _wnd) abstract;
-	virtual void	Update(Wnd* _wnd) abstract;
-	virtual void	Render(Wnd* _wnd) abstract;
+	virtual void	Init(Wnd* _wnd);
+	virtual void	Update(Wnd* _wnd);
+	virtual void	Render(Wnd* _wnd);
 };
 

@@ -21,5 +21,6 @@ public:
 	Scene* GetScene();
 	void Update(Wnd* wnd);
 	void Render(Wnd* wnd);
+	void Add(int sceneType, Scene* scene);
 };
 
