@@ -22,5 +22,8 @@ public:
 	void Update(Wnd* wnd);
 	void Render(Wnd* wnd);
 	void Add(int sceneType, Scene* scene);
+	void ChangeScene(SceneType type, Wnd* wnd);
+
+	void MouseClickEvent(int x, int y);
 };
 

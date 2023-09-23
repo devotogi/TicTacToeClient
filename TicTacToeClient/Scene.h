@@ -12,5 +12,6 @@ public:
 	virtual void	Init(Wnd* _wnd);
 	virtual void	Update(Wnd* _wnd);
 	virtual void	Render(Wnd* _wnd);
+	virtual void	MouseClickEvent(int x, int y);
 };
 

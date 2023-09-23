@@ -6,7 +6,7 @@
 #include "D2D1Core.h"
 #include "MenuScene.h"
 #include "SingleGameScene.h"
-
+#include "ResourceManager.h"
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
@@ -17,9 +17,15 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 	_menuScene = new MenuScene(_wnd);
 	_singleGameScene = new SingleGameScene(_wnd);
 
-
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Menu), reinterpret_cast<Scene*>(_menuScene));
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::SingelGame), reinterpret_cast<Scene*>(_singleGameScene));
+
+
+	Bitmap* p1o = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P1O.png");
+	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::P1OBg), p1o);
+
+	Bitmap* p2x = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P2X.png");
+	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::P2XBg), p2x);
 
 	MSG msg;
 	while (true)
@@ -54,6 +60,11 @@ App::~App()
 void App::MouseMoveEvent(int x, int y)
 {
 	_wnd->MouseMoveEvent(x, y);
+}
+
+void App::MouseClickEvent(int x, int y)
+{
+	SceneManager::GetInstance()->MouseClickEvent(x, y);
 }
 
 LRESULT App::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -109,6 +120,7 @@ LRESULT App::Dispatch(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_LBUTTONDOWN:
+		MouseClickEvent(LOWORD(lParam), HIWORD(lParam));
 		break;
 
 	case WM_MOUSEMOVE:

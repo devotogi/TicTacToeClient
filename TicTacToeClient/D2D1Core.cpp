@@ -35,6 +35,12 @@ void D2D1Core::CreateTextFormat(IDWriteTextFormat** textFormat, const WCHAR* fon
 	_D2D1WriteFactory->CreateTextFormat(fontName, NULL, DWRITE_FONT_WEIGHT_NORMAL, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, fontSize, L"en-us", textFormat);
 }
 
+void D2D1Core::CreateTextBoldFormat(IDWriteTextFormat** textFormat, const WCHAR* fontName, const FLOAT fontSize)
+{
+	_D2D1WriteFactory->CreateTextFormat(fontName, NULL, DWRITE_FONT_WEIGHT_BOLD, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, fontSize, L"en-us", textFormat);
+	(*textFormat)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+}
+
 void D2D1Core::CreateBrush(D2D1::ColorF color, ID2D1BitmapRenderTarget* rt, ID2D1SolidColorBrush** brush)
 {
 	rt->CreateSolidColorBrush(D2D1::ColorF(color), brush);

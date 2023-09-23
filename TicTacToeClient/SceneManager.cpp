@@ -56,3 +56,17 @@ void SceneManager::Add(int sceneType, Scene* scene)
 {
 	_scenes.insert({ sceneType , scene });
 }
+
+void SceneManager::ChangeScene(SceneType type, Wnd* wnd)
+{
+	_nowScene = static_cast<int>(type);
+	GetScene()->Init(wnd);
+}
+
+void SceneManager::MouseClickEvent(int x, int y)
+{
+	Scene* nowScene = GetScene();
+
+	if (nowScene)
+		nowScene->MouseClickEvent(x, y);
+}

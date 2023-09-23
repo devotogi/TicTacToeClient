@@ -28,6 +28,7 @@ public:
 	void CreateRenderTarget(HWND hWnd, ID2D1HwndRenderTarget** rt);
 	void CreateRenderTarget(ID2D1HwndRenderTarget* rt, ID2D1BitmapRenderTarget** crt);
 	void CreateTextFormat(IDWriteTextFormat** textFormat, const WCHAR* fontName, const FLOAT fontSize);
+	void CreateTextBoldFormat(IDWriteTextFormat** textFormat, const WCHAR* fontName, const FLOAT fontSize);
 	void CreateBrush(D2D1::ColorF color, ID2D1BitmapRenderTarget* rt, ID2D1SolidColorBrush** brush);
 	Bitmap* LoadBitmapByFilename(ID2D1HwndRenderTarget** rt, const WCHAR* fileName);
 };

@@ -49,10 +49,12 @@ Wnd::Wnd(HINSTANCE hInstance, int posX, int posY, int width, int height, const W
 	D2D1Core::GetInstance()->CreateRenderTarget(_hWnd, &_rt);
 	D2D1Core::GetInstance()->CreateRenderTarget(_rt, &_brt);
 	D2D1Core::GetInstance()->CreateTextFormat(&_textFormat, L"나눔고딕", 15.0f);
+	D2D1Core::GetInstance()->CreateTextBoldFormat(&_resultTextFormat, L"나눔고딕", 50.0f);
 
 	D2D1Core::GetInstance()->CreateBrush(D2D1::ColorF::Black, _brt, &_black);
 	D2D1Core::GetInstance()->CreateBrush(D2D1::ColorF::Red, _brt, &_red);
 	D2D1Core::GetInstance()->CreateBrush(D2D1::ColorF::White, _brt, &_white);
+	D2D1Core::GetInstance()->CreateBrush(D2D1::ColorF::Yellow, _brt, &_yellow);
 
 	ShowWindow(_hWnd, 10); // 생성된 윈도우 화면 출력
 	UpdateWindow(_hWnd);  // 윈도우 운영체제에 WM_PAINT 메세지 전송(이벤트 전송)
@@ -65,7 +67,7 @@ Wnd::~Wnd()
 
 void Wnd::DebugRender()
 {
-	_brt->FillRectangle(D2D1::RectF(0.0f, 0.0f, 65.0f, 18.0f), _white);
+	_brt->FillRectangle(D2D1::RectF(0.0f, 0.0f, 100.0f, 18.0f), _white);
 	WCHAR text[1000];
 	swprintf_s(text, _countof(text), L"X:%d, Y:%d", _mx, _my);
 	_brt->DrawTextW(text, wcslen(text), _textFormat, D2D1::RectF(0.0f, 0.0f, 100.0f, 25.0f), _black);

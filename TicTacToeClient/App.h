@@ -15,6 +15,7 @@ public:
 	~App();
 
 	void MouseMoveEvent(int x, int y);
+	void MouseClickEvent(int x, int y);
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	LRESULT	Dispatch(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

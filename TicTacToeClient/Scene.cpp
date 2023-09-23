@@ -21,3 +21,7 @@ void Scene::Render(Wnd* _wnd)
 #endif
 
 }
+
+void Scene::MouseClickEvent(int x, int y)
+{
+}
