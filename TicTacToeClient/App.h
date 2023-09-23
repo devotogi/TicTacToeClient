@@ -20,4 +20,3 @@ public:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	LRESULT	Dispatch(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
-

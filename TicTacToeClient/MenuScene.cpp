@@ -6,6 +6,7 @@
 #include "Bitmap.h"
 #include "Button.h"
 #include "SceneManager.h"
+
 MenuScene::MenuScene(Wnd* wnd)
 {
 	Bitmap* bitmap = D2D1Core::GetInstance()->LoadBitmapByFilename(wnd->GetPRT(), L"menuBg.png");

@@ -201,7 +201,6 @@ TileType SingleGameScene::OtherTurn(TileType turn)
 
 	else
 		return TileType::P1O;
-
 }
 
 int SingleGameScene::Hash()
@@ -232,7 +231,6 @@ int SingleGameScene::Hash()
 	}
 
 	return ret;
-
 }
 
 bool SingleGameScene::IsFinished(TileType turn)
@@ -306,7 +304,6 @@ bool SingleGameScene::CanWin(const Pos& pos, TileType turn)
 	if (isWin == WIN) return false;
 	else if (isWin == DRAW) return true;
 	else return true;
-
 }
 
 int SingleGameScene::CanWin(TileType turn)
@@ -344,5 +341,4 @@ int SingleGameScene::CanWin(TileType turn)
 		return ret = DRAW;
 
 	return ret = -minValue;
-
 }

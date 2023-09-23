@@ -6,7 +6,6 @@ class Button;
 class SingleGameScene : public Scene
 {
 private:
-	Bitmap* _menuBitmap = nullptr;
 	Button* _button = nullptr;
 	
 private:

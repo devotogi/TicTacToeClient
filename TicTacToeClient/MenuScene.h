@@ -19,4 +19,3 @@ public:
 	virtual void	Render(Wnd* _wnd) override;
 	virtual void	MouseClickEvent(int x, int y) override;
 };
-

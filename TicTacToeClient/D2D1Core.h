@@ -6,7 +6,6 @@ class D2D1Core
 private:
 	static D2D1Core* _instance;
 	ID2D1Factory* _D2D1Factory = nullptr;
-	ID2D1RenderTarget* _D2D1Rt = nullptr;
 	IDWriteFactory* _D2D1WriteFactory = nullptr;
 	IWICImagingFactory* _WICFactory = nullptr;
 

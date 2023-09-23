@@ -36,7 +36,7 @@ void SceneManager::Render(Wnd* wnd)
 	if (nowScene)
 		nowScene->Render(wnd);
 
-	wnd->DebugRender();
+	// wnd->DebugRender();
 
 	wnd->GetBRT()->EndDraw();
 	wnd->GetBRT()->GetBitmap(&bitmap);
