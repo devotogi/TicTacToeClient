@@ -1,17 +1,22 @@
 #include "pch.h"
 #include "App.h"
 #include "Wnd.h"
-#include "FPSManager.h"
+#include "FPS.h"
 #include "SceneManager.h"
 #include "D2D1Core.h"
 #include "MenuScene.h"
 #include "SingleGameScene.h"
 #include "ResourceManager.h"
+#include "TCPNetwork.h"
+#include "PacketHandler.h"
+
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
 App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 {
+	TCPNetwork tcpNetwork;
+
     _wnd = new Wnd(hInstance,0,0,976,579, szTitle, szWindowClass, WndProc, this);
 	
 	_menuScene = new MenuScene(_wnd);
@@ -26,10 +31,21 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 
 	Bitmap* p2x = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P2X.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::P2XBg), p2x);
+	FPS fps;
 
 	MSG msg;
 	while (true)
 	{
+		tcpNetwork.Recv();
+
+		while (PacketQueue::GetInstance()->GetQueue().empty() == false)
+		{
+			shared_ptr<Packet> packet = PacketQueue::GetInstance()->GetQueue().front();
+			PacketQueue::GetInstance()->GetQueue().pop();
+
+			PacketHandler::HandlePacket(packet);
+		}
+
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			if (msg.message == WM_QUIT)
@@ -39,11 +55,12 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 			DispatchMessage(&msg);
 		}
 
-		if (FPSManager::GetInstnace()->Ok())
+		if (fps.Ok())
 		{
 			SceneManager::GetInstance()->Update(_wnd);
 			SceneManager::GetInstance()->Render(_wnd);
 		}
+
 		Sleep(1);
 	}
 }

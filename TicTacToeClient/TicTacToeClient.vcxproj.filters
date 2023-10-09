@@ -14,13 +14,18 @@
     <ClCompile Include="D2D1Core.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="FPSManager.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SingleGameScene.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="RingBuffer.cpp" />
+    <ClCompile Include="TCPNetwork.cpp" />
+    <ClCompile Include="Packet.cpp" />
+    <ClCompile Include="PacketQueue.cpp" />
+    <ClCompile Include="PacketHandler.cpp" />
+    <ClCompile Include="FPS.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -29,7 +34,6 @@
     <ClInclude Include="D2D1Core.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="FPSManager.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Bitmap.h" />
@@ -37,5 +41,11 @@
     <ClInclude Include="SingleGameScene.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="RingBuffer.h" />
+    <ClInclude Include="TCPNetwork.h" />
+    <ClInclude Include="Packet.h" />
+    <ClInclude Include="PacketQueue.h" />
+    <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="FPS.h" />
   </ItemGroup>
 </Project>
