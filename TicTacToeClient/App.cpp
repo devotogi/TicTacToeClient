@@ -9,13 +9,14 @@
 #include "ResourceManager.h"
 #include "TCPNetwork.h"
 #include "PacketHandler.h"
-
+#include "UDPNetwork.h"
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
 App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 {
 	TCPNetwork tcpNetwork;
+	UDPNetwork udpNetwork;
 
     _wnd = new Wnd(hInstance,0,0,976,579, szTitle, szWindowClass, WndProc, this);
 	
@@ -37,6 +38,7 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 	while (true)
 	{
 		tcpNetwork.Recv();
+		udpNetwork.Recv();
 
 		while (PacketQueue::GetInstance()->GetQueue().empty() == false)
 		{

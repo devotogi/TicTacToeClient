@@ -26,6 +26,8 @@
     <ClCompile Include="PacketQueue.cpp" />
     <ClCompile Include="PacketHandler.cpp" />
     <ClCompile Include="FPS.cpp" />
+    <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="UDPNetwork.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -47,5 +49,7 @@
     <ClInclude Include="PacketQueue.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="FPS.h" />
+    <ClInclude Include="DataManager.h" />
+    <ClInclude Include="UDPNetwork.h" />
   </ItemGroup>
 </Project>
