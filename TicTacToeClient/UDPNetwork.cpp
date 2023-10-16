@@ -19,15 +19,8 @@ UDPNetwork::UDPNetwork()
 
 	memset(&_sockAddrIn, 0, sizeof(_sockAddrIn));
 	_sockAddrIn.sin_family = AF_INET;
-	inet_pton(AF_INET, "127.0.0.1", &_sockAddrIn.sin_addr);
+	inet_pton(AF_INET, "58.236.130.58", &_sockAddrIn.sin_addr);
 	_sockAddrIn.sin_port = htons(30002);
-
-	char snedBuffer[1000] = {0};
-	char* bufferPtr = (char*)snedBuffer;
-
-	*(__int16*)bufferPtr = 4; bufferPtr += 2;
-	*(__int16*)bufferPtr = 0; bufferPtr += 2;
-	sendto(_socket, snedBuffer, 4, 0, (sockaddr*)&_sockAddrIn, sizeof(sockaddr));
 }
 
 UDPNetwork::~UDPNetwork()
@@ -54,4 +47,18 @@ void UDPNetwork::Recv()
 		cout << "Recv Error" << endl;
 		return;
 	}
+
+	char* bufferPtr = buffer;
+
+	shared_ptr<Packet> packet = make_shared<Packet>();
+	packet->_pktSize = *(__int16*)bufferPtr;
+	packet->_pktCode = *(__int16*)(bufferPtr + 2);
+	char* dataPtr = (bufferPtr + 4);
+	packet->deapCopyBuffer(dataPtr, packet->_pktSize - 4);
+	PacketQueue::GetInstance()->GetQueue().push(packet);
+}
+
+void UDPNetwork::Send(char* buffer, int size)
+{
+	sendto(_socket, buffer, size, 0, (sockaddr*)&_sockAddrIn, sizeof(sockaddr));
 }

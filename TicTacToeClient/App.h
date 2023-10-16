@@ -2,6 +2,9 @@
 class Wnd;
 class MenuScene;
 class SingleGameScene;
+class TCPNetwork;
+class UDPNetwork;
+class LoadingScene;
 
 class App
 {
@@ -9,9 +12,12 @@ private:
 	Wnd* _wnd = nullptr;
 	MenuScene* _menuScene = nullptr;
 	SingleGameScene* _singleGameScene = nullptr;
+	LoadingScene* _loadingScene = nullptr;
+	TCPNetwork* _tcpNetwork;
+	UDPNetwork* _udpNetwork;
 
 public:
-	App(HINSTANCE hInstance, int posX, int posY, int width, int height);
+	App(HINSTANCE hInstance, int posX, int posY, int width, int height, TCPNetwork* tcpNetwork, UDPNetwork* udpNetwork);
 	~App();
 
 	void MouseMoveEvent(int x, int y);

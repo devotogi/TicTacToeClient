@@ -12,14 +12,18 @@ MenuScene::MenuScene(Wnd* wnd)
 	Bitmap* bitmap = D2D1Core::GetInstance()->LoadBitmapByFilename(wnd->GetPRT(), L"menuBg.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::MenuBg), bitmap);
 
-	_button = new Button(SingleGameBtn,325,353,322,72);
+	_singleGameBtn = new Button(SingleGameBtn,325,353,322,72);
+	_multiGameBtn = new Button(MultiGameBtn, 325, 250, 322, 72);
 }
 
 MenuScene::~MenuScene()
 {
 	ResourceManager::RemoveBitmap(static_cast<int>(BitmapName::MenuBg));
-	if (_button)
-		delete _button;
+	if (_singleGameBtn)
+		delete _singleGameBtn;
+
+	if (_multiGameBtn)
+		delete _multiGameBtn;
 }
 
 void MenuScene::Init(Wnd* _wnd)
@@ -28,9 +32,14 @@ void MenuScene::Init(Wnd* _wnd)
 
 void MenuScene::Update(Wnd* _wnd)
 {
-	if (_button->Clicked())
+	if (_singleGameBtn->Clicked())
 	{
 		SceneManager::GetInstance()->ChangeScene(SceneType::SingelGame, _wnd);
+	}
+
+	if (_multiGameBtn->Clicked())
+	{
+		SceneManager::GetInstance()->ChangeScene(SceneType::Loading, _wnd);
 	}
 }
 
@@ -47,5 +56,6 @@ void MenuScene::Render(Wnd* _wnd)
 
 void MenuScene::MouseClickEvent(int x, int y)
 {
-	_button->OnClick(x, y);
+	_singleGameBtn->OnClick(x, y);
+	_multiGameBtn->OnClick(x, y);
 }

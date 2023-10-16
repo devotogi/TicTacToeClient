@@ -12,5 +12,6 @@ public:
 	char PrivateIP[30] = { 0 };
 	char PublicIP[30] = { 0 };
 	unsigned int Port;
+	bool Start = false;
 };
 

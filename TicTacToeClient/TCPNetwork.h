@@ -17,5 +17,6 @@ public:
 
 public:
 	void Recv();
+	void Send(char* buffer, int size);
 };
 

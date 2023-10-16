@@ -110,3 +110,8 @@ void TCPNetwork::Recv()
 		}
 	}
 }
+
+void TCPNetwork::Send(char* buffer, int size)
+{
+	::send(_socket, buffer, size, 0);
+}

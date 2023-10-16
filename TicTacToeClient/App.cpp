@@ -10,21 +10,22 @@
 #include "TCPNetwork.h"
 #include "PacketHandler.h"
 #include "UDPNetwork.h"
+#include "LoadingScene.h"
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
-App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
+App::App(HINSTANCE hInstance, int posX, int posY, int width, int height, TCPNetwork* tcpNetwork, UDPNetwork* udpNetwork) : _tcpNetwork(tcpNetwork), _udpNetwork(udpNetwork)
 {
-	TCPNetwork tcpNetwork;
-	UDPNetwork udpNetwork;
 
     _wnd = new Wnd(hInstance,0,0,976,579, szTitle, szWindowClass, WndProc, this);
 	
 	_menuScene = new MenuScene(_wnd);
 	_singleGameScene = new SingleGameScene(_wnd);
+	_loadingScene = new LoadingScene(_wnd);
 
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Menu), reinterpret_cast<Scene*>(_menuScene));
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::SingelGame), reinterpret_cast<Scene*>(_singleGameScene));
+	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Loading), reinterpret_cast<Scene*>(_loadingScene));
 
 
 	Bitmap* p1o = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P1O.png");
@@ -32,13 +33,16 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height)
 
 	Bitmap* p2x = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P2X.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::P2XBg), p2x);
+	
 	FPS fps;
+	
+	SceneManager::GetInstance()->NetworkSetting(_tcpNetwork, _udpNetwork);
 
 	MSG msg;
 	while (true)
 	{
-		tcpNetwork.Recv();
-		udpNetwork.Recv();
+		_tcpNetwork->Recv();
+		_udpNetwork->Recv();
 
 		while (PacketQueue::GetInstance()->GetQueue().empty() == false)
 		{

@@ -9,6 +9,9 @@ private:
 	map<int, Scene*> _scenes;
 	int	_nowScene = 0;
 
+	class TCPNetwork* _tcpNetwork;
+	class UDPNetwork* _udpNetwork;
+
 public:
 	static SceneManager* GetInstance() 
 	{
@@ -25,5 +28,9 @@ public:
 	void ChangeScene(SceneType type, Wnd* wnd);
 
 	void MouseClickEvent(int x, int y);
+	void NetworkSetting(TCPNetwork* tcp, UDPNetwork* udp) { _tcpNetwork = tcp, _udpNetwork = udp; }
+
+	TCPNetwork* GetTCP() { return _tcpNetwork; }
+	UDPNetwork* GetUDP() { return _udpNetwork; }
 };
 

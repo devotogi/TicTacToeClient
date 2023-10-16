@@ -4,6 +4,8 @@ enum SceneType :int
 {
 	Menu,
 	SingelGame,
+	Loading,
+	MultiGame
 };
 
 enum BitmapName : int 
@@ -12,12 +14,14 @@ enum BitmapName : int
 	SingGameBg = 1,
 	P1OBg = 2,
 	P2XBg = 3,
+	LoadingBg = 4,
 };
 
 enum UIType : int 
 {
 	SingleGameBtn = 0,
 	SingleGameBackBtn = 1,
+	MultiGameBtn = 2,
 };
 
 enum ResultType
@@ -63,4 +67,11 @@ struct Pos
 			return y > other.y;
 		return x > other.x;
 	}
+};
+
+enum PacketType : __int16 
+{
+	S2C_CLIENTINIT,
+	C2S_CLIENTINIT,
+	C2S_CLIENTREADY,
 };

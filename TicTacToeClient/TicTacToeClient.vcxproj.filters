@@ -28,6 +28,7 @@
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="UDPNetwork.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -51,5 +52,6 @@
     <ClInclude Include="FPS.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="UDPNetwork.h" />
+    <ClInclude Include="LoadingScene.h" />
   </ItemGroup>
 </Project>
