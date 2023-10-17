@@ -7,15 +7,19 @@ class Button;
 class LoadingScene : public Scene
 {
 private:
-	bool _wantPing = false;
+	LoadingState _state = WANTPING;
+
 	int _wantLastTick = 0;
 	int _wantSumTick = 0;
 	int _percent = 0;
 	Bitmap* _loadingBitmap = nullptr;
 	IDWriteTextFormat* _textFormat;
+
 public:
 	LoadingScene(Wnd* wnd);
 	~LoadingScene();
+
+	void SetState(LoadingState state) { _state = state; }
 
 	virtual void	Init(Wnd* _wnd) override;
 	virtual void	Update(Wnd* _wnd) override;

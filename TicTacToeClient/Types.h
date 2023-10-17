@@ -74,4 +74,11 @@ enum PacketType : __int16
 	S2C_CLIENTINIT,
 	C2S_CLIENTINIT,
 	C2S_CLIENTREADY,
+	S2C_UDPINFO,
+};
+
+enum LoadingState : __int16 
+{
+	WANTPING,
+	UDPHOLEPUNCH,
 };

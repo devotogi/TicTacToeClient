@@ -20,19 +20,19 @@ LoadingScene::~LoadingScene()
 
 void LoadingScene::Init(Wnd* _wnd)
 {
-	_wantPing = true;
+	_state = WANTPING;
 }
 
 void LoadingScene::Update(Wnd* _wnd)
 {
-	if (_wantPing) 
+	if (_state == WANTPING)
 	{
 		int currentTick = ::GetTickCount64();
 		int deltaTick = currentTick - _wantLastTick;
 
 		_wantSumTick += deltaTick;
 
-		if (_wantLastTick > 1000) 
+		if (_wantLastTick > 3000) 
 		{
 			_wantSumTick = 0;
 			// TCP에 방잡아달라고 요청 보내기
@@ -44,6 +44,28 @@ void LoadingScene::Update(Wnd* _wnd)
 				*(__int16*)bufferPtr = C2S_CLIENTREADY; bufferPtr += 2; // packetType
 
 				SceneManager::GetInstance()->GetTCP()->Send(sendBuffer, 4);
+			}
+		}
+		_wantLastTick = currentTick;
+	}
+	else if (_state == UDPHOLEPUNCH) 
+	{
+		int currentTick = ::GetTickCount64();
+		int deltaTick = currentTick - _wantLastTick;
+
+		_wantSumTick += deltaTick;
+
+		if (_wantLastTick > 1000) 
+		{
+			_wantSumTick = 0;
+			{
+				char sendBuffer[100] = {};
+				char* bufferPtr = (char*)sendBuffer;
+
+				*(__int16*)bufferPtr = 4;				bufferPtr += 2; // packetSize
+				*(__int16*)bufferPtr = 998;				bufferPtr += 2; // packetType
+
+				SceneManager::GetInstance()->GetUDP()->Send(sendBuffer, 4);
 			}
 		}
 		_wantLastTick = currentTick;
