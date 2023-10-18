@@ -10,7 +10,7 @@
 #include "UDPNetwork.h"
 #include "DataManager.h"
 #include "Session.h"
-LoadingScene::LoadingScene(Wnd* wnd)
+LoadingScene::LoadingScene(Wnd* wnd) : Scene(Loading)
 {
 	Bitmap* bitmap = D2D1Core::GetInstance()->LoadBitmapByFilename(wnd->GetPRT(), L"LoadingBg.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::LoadingBg), bitmap);

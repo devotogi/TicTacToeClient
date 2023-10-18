@@ -33,6 +33,7 @@ private:
 	D2D1_RECT_F _resultTextRect = { 283.f,207.f,672.f, 335.f };
 	ResultType _gameResult = ResultType::DEFAULT;
 	bool _resultState = false;
+	bool _exit = false;
 
 private:
 	int _lastTick = 0;
@@ -54,6 +55,7 @@ public:
 	void			GameResult(ResultType resultType);
 	void			TimeOut();
 	void			TimeFlow(int time) { _time = time; };
+	void            Exit();
 
 	virtual void	Init(Wnd* _wnd) override;
 	virtual void	Update(Wnd* _wnd) override;

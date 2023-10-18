@@ -10,7 +10,7 @@
 #include "Session.h"
 #include "TCPNetwork.h"
 
-MultiGameScene::MultiGameScene(Wnd* wnd)
+MultiGameScene::MultiGameScene(Wnd* wnd) : Scene(MultiGame)
 {
 	_button = new Button(SingleGameBackBtn, 21, 14, 203, 59);
 }
@@ -136,6 +136,11 @@ void MultiGameScene::TimeOut()
 	_nowTurn = OtherTurn(_nowTurn);
 }
 
+void MultiGameScene::Exit()
+{
+	_exit = true;
+}
+
 void MultiGameScene::Init(Wnd* _wnd)
 {
 	_nowTurn = P1O;
@@ -143,6 +148,7 @@ void MultiGameScene::Init(Wnd* _wnd)
 	_sumTimeTick = 0;
 	_lastTimeTick = 0;
 	_time = 15;
+	_exit = false;
 
 	for (int y = 0; y < 3; y++)
 		for (int x = 0; x < 3; x++)
@@ -151,6 +157,12 @@ void MultiGameScene::Init(Wnd* _wnd)
 
 void MultiGameScene::Update(Wnd* _wnd)
 {
+	if (_exit)
+	{
+		SceneManager::GetInstance()->ChangeScene(Menu, _wnd);
+		return;
+	}
+
 	if (_button->Clicked())
 	{
 		SceneManager::GetInstance()->ChangeScene(SceneType::Menu, _wnd);
@@ -351,9 +363,11 @@ void MultiGameScene::Clear(Wnd* wnd)
 		char* bufferPtr = reinterpret_cast<char*>(sendBuffer);
 
 		*(__int16*)bufferPtr = 4;							bufferPtr += 2;
-		*(__int16*)bufferPtr = C2s_GAME_END;				bufferPtr += 2;
+		*(__int16*)bufferPtr = C2S_GAME_END;				bufferPtr += 2;
 		
 		SceneManager::GetInstance()->GetTCP()->Send(sendBuffer, 4);
+
+		_exit = false;
 
 		DataManager::GetInstance()->OPort = -1;
 		::memset(DataManager::GetInstance()->OPrivateIP, 0, 30);

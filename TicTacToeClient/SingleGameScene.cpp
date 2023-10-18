@@ -7,7 +7,7 @@
 #include "Button.h"
 #include "SceneManager.h"
 
-SingleGameScene::SingleGameScene(Wnd* wnd)
+SingleGameScene::SingleGameScene(Wnd* wnd) : Scene(SingelGame)
 {
 	Bitmap* bitmap = D2D1Core::GetInstance()->LoadBitmapByFilename(wnd->GetPRT(), L"single.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::SingGameBg), bitmap);

@@ -4,10 +4,13 @@ class Wnd;
 class Scene
 {
 protected:
+	SceneType _sceneType;
 
 public:
-	Scene() {};
+	Scene(SceneType sceneType) : _sceneType(sceneType) {};
 	virtual ~Scene() { };
+
+	SceneType		GetSceneType() { return _sceneType; }
 
 	virtual void	Init(Wnd* _wnd);
 	virtual void	Update(Wnd* _wnd);

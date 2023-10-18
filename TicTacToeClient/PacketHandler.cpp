@@ -40,6 +40,10 @@ void PacketHandler::HandlePacket(shared_ptr<Packet> packet)
 	case UDP_PING_TIMEOUT:
 		HandlePacket_UDP_PING_TIMEOUT(packet);
 		break;
+
+	case S2C_EXIT_ROOM:
+		HandlePacket_S2C_EXIT_ROOM(packet);
+		break;
 	}
 }
 
@@ -131,4 +135,13 @@ void PacketHandler::HandlePacket_UDP_TIME_FLOW(shared_ptr<Packet> packet)
 	char* buffer = packet->GetBuffer();
 	int time = *(int*)buffer;	buffer += 4;
 	static_cast<MultiGameScene*>(scene)->TimeFlow(time);
+}
+
+void PacketHandler::HandlePacket_S2C_EXIT_ROOM(shared_ptr<Packet> packet)
+{
+	Scene* scene = SceneManager::GetInstance()->GetScene();
+	SceneType type = scene->GetSceneType();
+
+	if (type == MultiGame)
+		reinterpret_cast<MultiGameScene*>(scene)->Exit();
 }
