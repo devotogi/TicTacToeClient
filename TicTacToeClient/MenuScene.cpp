@@ -59,3 +59,7 @@ void MenuScene::MouseClickEvent(int x, int y)
 	_singleGameBtn->OnClick(x, y);
 	_multiGameBtn->OnClick(x, y);
 }
+
+void MenuScene::Clear(Wnd* wnd)
+{
+}

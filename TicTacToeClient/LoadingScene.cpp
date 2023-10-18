@@ -8,6 +8,8 @@
 #include "SceneManager.h"
 #include "TCPNetwork.h"
 #include "UDPNetwork.h"
+#include "DataManager.h"
+#include "Session.h"
 LoadingScene::LoadingScene(Wnd* wnd)
 {
 	Bitmap* bitmap = D2D1Core::GetInstance()->LoadBitmapByFilename(wnd->GetPRT(), L"LoadingBg.png");
@@ -16,6 +18,45 @@ LoadingScene::LoadingScene(Wnd* wnd)
 
 LoadingScene::~LoadingScene()
 {
+}
+
+void LoadingScene::AddPercent()
+{
+	_percent += 25;
+
+	if (_percent >= 100)
+	{
+		_percent = 100;
+
+		char buffer[100] = { 0 };
+		char* bufferPtr = reinterpret_cast<char*>(buffer);
+
+		*(__int16*)bufferPtr = 4;						bufferPtr += 2;
+		*(__int16*)bufferPtr = UDP_PING_COMPLETE;		bufferPtr += 2;
+
+		DataManager::GetInstance()->Session->Send(buffer, 4);
+	}
+}
+
+void LoadingScene::CanComplete()
+{
+	if (DataManager::GetInstance()->PlayerNumber == 1 && _percent >= 100) 
+	{
+		char buffer[100] = { 0 };
+		char* bufferPtr = reinterpret_cast<char*>(buffer);
+
+		*(__int16*)bufferPtr = 4;						bufferPtr += 2;
+		*(__int16*)bufferPtr = UDP_PING_GAMESTART;		bufferPtr += 2;
+
+		DataManager::GetInstance()->Session->Send(buffer, 4);
+
+		GameStart();
+	}
+}
+
+void LoadingScene::GameStart()
+{
+	_state = END;
 }
 
 void LoadingScene::Init(Wnd* _wnd)
@@ -63,12 +104,17 @@ void LoadingScene::Update(Wnd* _wnd)
 				char* bufferPtr = (char*)sendBuffer;
 
 				*(__int16*)bufferPtr = 4;				bufferPtr += 2; // packetSize
-				*(__int16*)bufferPtr = 998;				bufferPtr += 2; // packetType
+				*(__int16*)bufferPtr = UDP_PING_SEND;	bufferPtr += 2; // packetType
 
-				SceneManager::GetInstance()->GetUDP()->Send(sendBuffer, 4);
+				// SceneManager::GetInstance()->GetUDP()->Send(sendBuffer, 4);
+				DataManager::GetInstance()->Session->Send(bufferPtr, 4);
 			}
 		}
 		_wantLastTick = currentTick;
+	}
+	else if (_state == END) 
+	{
+		SceneManager::GetInstance()->ChangeScene(SceneType::MultiGame, _wnd);
 	}
 }
 
@@ -89,4 +135,10 @@ void LoadingScene::Render(Wnd* _wnd)
 void LoadingScene::MouseClickEvent(int x, int y)
 {
 
+}
+
+void LoadingScene::Clear(Wnd* wnd)
+{
+	_percent = 0;
+	_state = WANTPING;
 }

@@ -1,4 +1,6 @@
 #pragma once
+class Session;
+
 class DataManager
 {
 public:
@@ -17,6 +19,10 @@ public:
 	char OPublicIP[30] = { 0 };
 	unsigned int OPort;
 
+	int PlayerNumber = -1;
+
 	bool Start = false;
+
+	std::shared_ptr<Session> Session;
 };
 

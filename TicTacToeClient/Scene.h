@@ -13,5 +13,6 @@ public:
 	virtual void	Update(Wnd* _wnd);
 	virtual void	Render(Wnd* _wnd);
 	virtual void	MouseClickEvent(int x, int y);
+	virtual void	Clear(Wnd* _wnd);
 };
 

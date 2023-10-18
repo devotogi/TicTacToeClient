@@ -156,6 +156,7 @@
     <ClCompile Include="RingBuffer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="SingleGameScene.cpp" />
     <ClCompile Include="TCPNetwork.cpp" />
     <ClCompile Include="TicTacToeClient.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="SingleGameScene.h" />
     <ClInclude Include="TCPNetwork.h" />
     <ClInclude Include="Types.h" />

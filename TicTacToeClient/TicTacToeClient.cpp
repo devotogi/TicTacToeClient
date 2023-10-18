@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	char* bufferPtr = (char*)sendBuffer;
 
 	*(__int16*)bufferPtr = 4; bufferPtr += 2; // packetSize
-	*(__int16*)bufferPtr = 0; bufferPtr += 2; // packetType
+	*(__int16*)bufferPtr = 998; bufferPtr += 2; // packetType
 
 	// 자신의 public Ip 받아오기
 	udpNetwork.Send(sendBuffer, 4);

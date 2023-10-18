@@ -41,6 +41,7 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height, TCPNetw
 	MSG msg;
 	while (true)
 	{
+		_udpNetwork->Ping();
 		_tcpNetwork->Recv();
 		_udpNetwork->Recv();
 

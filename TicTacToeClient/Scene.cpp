@@ -25,3 +25,8 @@ void Scene::Render(Wnd* _wnd)
 void Scene::MouseClickEvent(int x, int y)
 {
 }
+
+void Scene::Clear(Wnd* _wnd)
+{
+
+}

@@ -29,6 +29,7 @@
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="UDPNetwork.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
+    <ClCompile Include="Session.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -53,5 +54,6 @@
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="UDPNetwork.h" />
     <ClInclude Include="LoadingScene.h" />
+    <ClInclude Include="Session.h" />
   </ItemGroup>
 </Project>

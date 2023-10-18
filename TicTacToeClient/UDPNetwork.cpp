@@ -62,3 +62,26 @@ void UDPNetwork::Send(char* buffer, int size)
 {
 	sendto(_socket, buffer, size, 0, (sockaddr*)&_sockAddrIn, sizeof(sockaddr));
 }
+
+void UDPNetwork::Ping()
+{
+	int currentTick = GetTickCount64();
+	int deltaTick = currentTick - _lastTick;
+	
+	_sumTick += deltaTick;
+
+	if (_sumTick < 1000) 
+		return;
+	
+	_sumTick = 0;
+	_lastTick = currentTick;
+
+	char sendBuffer[1000] = { 0 };
+	char* bufferPtr = (char*)sendBuffer;
+
+	*(__int16*)bufferPtr = 4; bufferPtr += 2; // packetSize
+	*(__int16*)bufferPtr = 997; bufferPtr += 2; // packetType
+
+	// 핑 유지하기
+	Send(sendBuffer, 4);
+}

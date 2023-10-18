@@ -59,6 +59,7 @@ void SceneManager::Add(int sceneType, Scene* scene)
 
 void SceneManager::ChangeScene(SceneType type, Wnd* wnd)
 {
+	GetScene()->Clear(wnd);
 	_nowScene = static_cast<int>(type);
 	GetScene()->Init(wnd);
 }

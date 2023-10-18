@@ -19,4 +19,5 @@ public:
 	virtual void	Update(Wnd* _wnd) override;
 	virtual void	Render(Wnd* _wnd) override;
 	virtual void	MouseClickEvent(int x, int y) override;
+	virtual void	Clear(Wnd* wnd) override;
 };

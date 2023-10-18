@@ -194,6 +194,10 @@ void SingleGameScene::MouseClickEvent(int x, int y)
 	}
 }
 
+void SingleGameScene::Clear(Wnd* wnd)
+{
+}
+
 TileType SingleGameScene::OtherTurn(TileType turn)
 {
 	if (turn == TileType::P1O)
