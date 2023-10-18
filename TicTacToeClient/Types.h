@@ -81,6 +81,9 @@ enum PacketType : __int16
 	UDP_PING_GAMESTART,
 	UDP_PING_SETSTONE,
 	UDP_PING_RESULT,
+	UDP_PING_TIMEOUT,
+	UDP_TIME_FLOW,
+	C2s_GAME_END,
 };
 
 enum LoadingState : __int16 

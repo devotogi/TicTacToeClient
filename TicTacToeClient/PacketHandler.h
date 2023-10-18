@@ -13,5 +13,7 @@ private:
 	static void HandlePacket_UDP_PING_GAMESTART(shared_ptr<Packet> packet);
 	static void HandlePacket_UDP_PING_SETSTONE(shared_ptr<Packet> packet);
 	static void HandlePacket_UDP_PING_RESULT(shared_ptr<Packet> packet);
+	static void HandlePacket_UDP_PING_TIMEOUT(shared_ptr<Packet> packet);
+	static void HandlePacket_UDP_TIME_FLOW(shared_ptr<Packet> packet);
 };
 

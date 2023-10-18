@@ -36,6 +36,10 @@ void PacketHandler::HandlePacket(shared_ptr<Packet> packet)
 	case UDP_PING_RESULT:
 		HandlePacket_UDP_PING_RESULT(packet);
 		break;
+
+	case UDP_PING_TIMEOUT:
+		HandlePacket_UDP_PING_TIMEOUT(packet);
+		break;
 	}
 }
 
@@ -113,4 +117,18 @@ void PacketHandler::HandlePacket_UDP_PING_RESULT(shared_ptr<Packet> packet)
 	int gameResult = *(int*)buffer;	buffer += 4;
 	gameResult *= -1;
 	static_cast<MultiGameScene*>(scene)->GameResult(static_cast<ResultType>(gameResult));
+}
+
+void PacketHandler::HandlePacket_UDP_PING_TIMEOUT(shared_ptr<Packet> packet)
+{
+	Scene* scene = SceneManager::GetInstance()->GetScene();
+	static_cast<MultiGameScene*>(scene)->TimeOut();
+}
+
+void PacketHandler::HandlePacket_UDP_TIME_FLOW(shared_ptr<Packet> packet)
+{
+	Scene* scene = SceneManager::GetInstance()->GetScene();
+	char* buffer = packet->GetBuffer();
+	int time = *(int*)buffer;	buffer += 4;
+	static_cast<MultiGameScene*>(scene)->TimeFlow(time);
 }

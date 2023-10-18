@@ -38,6 +38,11 @@ private:
 	int _lastTick = 0;
 	int _sumTick = 0;
 
+private:
+	int _time = 15;
+	int _lastTimeTick = 0;
+	int _sumTimeTick= 0;
+
 public:
 	MultiGameScene(Wnd* wnd);
 	~MultiGameScene();
@@ -47,6 +52,8 @@ public:
 	ResultType      IsEnd();
 	void			SetStone(int y, int x);
 	void			GameResult(ResultType resultType);
+	void			TimeOut();
+	void			TimeFlow(int time) { _time = time; };
 
 	virtual void	Init(Wnd* _wnd) override;
 	virtual void	Update(Wnd* _wnd) override;
