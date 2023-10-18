@@ -258,7 +258,6 @@ bool SingleGameScene::IsFinished(TileType turn)
 		return true;
 
 	return false;
-
 }
 
 ResultType SingleGameScene::IsEnd()

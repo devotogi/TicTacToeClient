@@ -4,6 +4,8 @@
 #include "SceneManager.h"
 #include "LoadingScene.h"
 #include "Session.h"
+#include "MultiGameScene.h"
+
 void PacketHandler::HandlePacket(shared_ptr<Packet> packet)
 {
 	__int16 code = packet->_pktCode;
@@ -25,6 +27,14 @@ void PacketHandler::HandlePacket(shared_ptr<Packet> packet)
 
 	case UDP_PING_COMPLETE:
 		HandlePacket_UDP_PING_COMPLETE(packet);
+		break;
+
+	case UDP_PING_SETSTONE:
+		HandlePacket_UDP_PING_SETSTONE(packet);
+		break;
+
+	case UDP_PING_RESULT:
+		HandlePacket_UDP_PING_RESULT(packet);
 		break;
 	}
 }
@@ -82,4 +92,25 @@ void PacketHandler::HandlePacket_UDP_PING_GAMESTART(shared_ptr<Packet> packet)
 {
 	Scene* scene = SceneManager::GetInstance()->GetScene();
 	static_cast<LoadingScene*>(scene)->GameStart();
+}
+
+void PacketHandler::HandlePacket_UDP_PING_SETSTONE(shared_ptr<Packet> packet)
+{
+	Scene* scene = SceneManager::GetInstance()->GetScene();
+
+	char* buffer = packet->GetBuffer();
+	int y = *(int*)buffer;	buffer += 4;
+	int x = *(int*)buffer;	buffer += 4;
+
+	static_cast<MultiGameScene*>(scene)->SetStone(y, x);
+}
+
+void PacketHandler::HandlePacket_UDP_PING_RESULT(shared_ptr<Packet> packet)
+{
+	Scene* scene = SceneManager::GetInstance()->GetScene();
+
+	char* buffer = packet->GetBuffer();
+	int gameResult = *(int*)buffer;	buffer += 4;
+	gameResult *= -1;
+	static_cast<MultiGameScene*>(scene)->GameResult(static_cast<ResultType>(gameResult));
 }

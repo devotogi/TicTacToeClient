@@ -30,6 +30,7 @@
     <ClCompile Include="UDPNetwork.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Session.cpp" />
+    <ClCompile Include="MultiGameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -55,5 +56,6 @@
     <ClInclude Include="UDPNetwork.h" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Session.h" />
+    <ClInclude Include="MultiGameScene.h" />
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ enum UIType : int
 	MultiGameBtn = 2,
 };
 
-enum ResultType
+enum ResultType : int
 {
 	DEFAULT = 2,
 	WIN = 1,
@@ -79,6 +79,8 @@ enum PacketType : __int16
 	UDP_PING_RECV,
 	UDP_PING_COMPLETE,
 	UDP_PING_GAMESTART,
+	UDP_PING_SETSTONE,
+	UDP_PING_RESULT,
 };
 
 enum LoadingState : __int16 

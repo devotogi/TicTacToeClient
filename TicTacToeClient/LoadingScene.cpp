@@ -61,6 +61,7 @@ void LoadingScene::GameStart()
 
 void LoadingScene::Init(Wnd* _wnd)
 {
+	_percent = 0;
 	_state = WANTPING;
 }
 
