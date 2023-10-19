@@ -67,14 +67,14 @@ void UDPNetwork::Ping()
 {
 	int currentTick = GetTickCount64();
 	int deltaTick = currentTick - _lastTick;
-	
+	_lastTick = currentTick;
 	_sumTick += deltaTick;
 
 	if (_sumTick < 1000) 
 		return;
 	
 	_sumTick = 0;
-	_lastTick = currentTick;
+
 
 	char sendBuffer[1000] = { 0 };
 	char* bufferPtr = (char*)sendBuffer;

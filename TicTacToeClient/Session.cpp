@@ -24,6 +24,6 @@ Session::~Session()
 }
 
 void Session::Send(char* buffer, int size)
-{
+{ 
 	sendto(_socket, buffer, size, 0, (sockaddr*)&_sockAddrIn, sizeof(sockaddr));
 }

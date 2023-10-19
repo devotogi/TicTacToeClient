@@ -71,10 +71,10 @@ void LoadingScene::Update(Wnd* _wnd)
 	{
 		int currentTick = ::GetTickCount64();
 		int deltaTick = currentTick - _wantLastTick;
-
+		_wantLastTick = currentTick;
 		_wantSumTick += deltaTick;
 
-		if (_wantLastTick > 3000) 
+		if (_wantSumTick > 3000)
 		{
 			_wantSumTick = 0;
 			// TCP에 방잡아달라고 요청 보내기
@@ -88,16 +88,15 @@ void LoadingScene::Update(Wnd* _wnd)
 				SceneManager::GetInstance()->GetTCP()->Send(sendBuffer, 4);
 			}
 		}
-		_wantLastTick = currentTick;
 	}
 	else if (_state == UDPHOLEPUNCH) 
 	{
 		int currentTick = ::GetTickCount64();
 		int deltaTick = currentTick - _wantLastTick;
-
+		_wantLastTick = currentTick;
 		_wantSumTick += deltaTick;
 
-		if (_wantLastTick > 1000) 
+		if (_wantSumTick > 1000)
 		{
 			_wantSumTick = 0;
 			{
@@ -108,10 +107,10 @@ void LoadingScene::Update(Wnd* _wnd)
 				*(__int16*)bufferPtr = UDP_PING_SEND;	bufferPtr += 2; // packetType
 
 				// SceneManager::GetInstance()->GetUDP()->Send(sendBuffer, 4);
-				DataManager::GetInstance()->Session->Send(bufferPtr, 4);
+				DataManager::GetInstance()->Session->Send(sendBuffer, 4);
 			}
 		}
-		_wantLastTick = currentTick;
+		
 	}
 	else if (_state == END) 
 	{
