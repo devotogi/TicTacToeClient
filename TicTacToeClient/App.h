@@ -5,6 +5,7 @@ class SingleGameScene;
 class TCPNetwork;
 class UDPNetwork;
 class LoadingScene;
+class MultiGameScene;
 
 class App
 {
@@ -12,6 +13,7 @@ private:
 	Wnd* _wnd = nullptr;
 	MenuScene* _menuScene = nullptr;
 	SingleGameScene* _singleGameScene = nullptr;
+	MultiGameScene* _multiGameScene = nullptr;
 	LoadingScene* _loadingScene = nullptr;
 	TCPNetwork* _tcpNetwork;
 	UDPNetwork* _udpNetwork;

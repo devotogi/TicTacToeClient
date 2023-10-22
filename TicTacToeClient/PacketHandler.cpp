@@ -44,6 +44,14 @@ void PacketHandler::HandlePacket(shared_ptr<Packet> packet)
 	case S2C_EXIT_ROOM:
 		HandlePacket_S2C_EXIT_ROOM(packet);
 		break;
+
+	case UDP_PING_SEND:
+		HandlePacket_UDP_PING_SEND(packet);
+		break;
+
+	case UDP_PING_GAMESTART:
+		HandlePacket_UDP_PING_GAMESTART(packet);
+		break;
 	}
 }
 
@@ -119,7 +127,6 @@ void PacketHandler::HandlePacket_UDP_PING_RESULT(shared_ptr<Packet> packet)
 
 	char* buffer = packet->GetBuffer();
 	int gameResult = *(int*)buffer;	buffer += 4;
-	gameResult *= -1;
 	static_cast<MultiGameScene*>(scene)->GameResult(static_cast<ResultType>(gameResult));
 }
 

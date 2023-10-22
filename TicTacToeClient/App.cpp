@@ -11,6 +11,7 @@
 #include "PacketHandler.h"
 #include "UDPNetwork.h"
 #include "LoadingScene.h"
+#include "MultiGameScene.h"
 static WCHAR szWindowClass[] = L"TicTacToeClient";
 static WCHAR szTitle[] = L"TicTacToeClient";
 
@@ -22,11 +23,12 @@ App::App(HINSTANCE hInstance, int posX, int posY, int width, int height, TCPNetw
 	_menuScene = new MenuScene(_wnd);
 	_singleGameScene = new SingleGameScene(_wnd);
 	_loadingScene = new LoadingScene(_wnd);
+	_multiGameScene = new MultiGameScene(_wnd);
 
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Menu), reinterpret_cast<Scene*>(_menuScene));
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::SingelGame), reinterpret_cast<Scene*>(_singleGameScene));
 	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::Loading), reinterpret_cast<Scene*>(_loadingScene));
-
+	SceneManager::GetInstance()->Add(static_cast<int>(SceneType::MultiGame), reinterpret_cast<Scene*>(_multiGameScene));
 
 	Bitmap* p1o = D2D1Core::GetInstance()->LoadBitmapByFilename(_wnd->GetPRT(), L"P1O.png");
 	ResourceManager::InsertBitmap(static_cast<int>(BitmapName::P1OBg), p1o);

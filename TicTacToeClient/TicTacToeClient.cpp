@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	char* publicIp = dataPtr;
 
 	::memcpy(DataManager::GetInstance()->PublicIP, publicIp, publicIpSize);
+	DataManager::GetInstance()->Port = port;
 	
 	IN_ADDR addr = { 0, };
 	char myaddr[256] = { 0 };

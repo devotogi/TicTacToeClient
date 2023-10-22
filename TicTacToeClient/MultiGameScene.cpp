@@ -104,7 +104,7 @@ void MultiGameScene::SetStone(int y, int x)
 	{
 		_gameResult = IsEnd();
 
-		if (_gameResult == ResultType::WIN || _gameResult == ResultType::LOSE)
+		if (_gameResult == ResultType::WIN || _gameResult == ResultType::LOSE || _gameResult == ResultType::DRAW)
 		{
 			_resultState = true;
 
@@ -166,50 +166,6 @@ void MultiGameScene::Update(Wnd* _wnd)
 	if (_button->Clicked())
 	{
 		SceneManager::GetInstance()->ChangeScene(SceneType::Menu, _wnd);
-	}
-
-	if (DataManager::GetInstance()->PlayerNumber == 1)
-	{
-		int currentTick = GetTickCount64();
-		_lastTimeTick = _lastTimeTick == 0 ? currentTick : _lastTimeTick;
-		_sumTimeTick += currentTick - _lastTimeTick;
-
-		if (_sumTimeTick >= 1000) 
-		{
-			_sumTimeTick = 0;
-			_time -= 1;
-			
-			if (_time <= 0)
-				_time = 0;
-
-			{
-				char sendBuffer[100] = {};
-				char* bufferPtr = reinterpret_cast<char*>(sendBuffer);
-
-				*(__int16*)bufferPtr = 8;							bufferPtr += 2;
-				*(__int16*)bufferPtr = UDP_TIME_FLOW;				bufferPtr += 2;
-				*(int*)bufferPtr = _time;							bufferPtr += 4;
-
-				DataManager::GetInstance()->Session->Send(sendBuffer, 8);
-			}
-
-			if (_time <= 0)
-			{
-				_time = 15;
-
-				{
-					char sendBuffer[100] = {};
-					char* bufferPtr = reinterpret_cast<char*>(sendBuffer);
-
-					*(__int16*)bufferPtr = 4;							bufferPtr += 2;
-					*(__int16*)bufferPtr = UDP_PING_TIMEOUT;			bufferPtr += 2;
-
-					DataManager::GetInstance()->Session->Send(sendBuffer, 4);
-				}
-
-				_nowTurn = OtherTurn(_nowTurn);
-			}
-		}
 	}
 
 	if (_resultState)
@@ -321,12 +277,9 @@ void MultiGameScene::MouseClickEvent(int x, int y)
 				
 				if (DataManager::GetInstance()->PlayerNumber == 1) 
 				{
-					_sumTimeTick = 0;
-					_time = 15;
-
 					_gameResult = IsEnd();
 
-					if (_gameResult == ResultType::WIN || _gameResult == ResultType::LOSE)
+					if (_gameResult == ResultType::WIN || _gameResult == ResultType::LOSE || _gameResult == ResultType::DRAW)
 					{
 						_resultState = true;
 
